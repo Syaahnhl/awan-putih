@@ -12,12 +12,13 @@
 
 ## 👥 Tim Pengembang (Kelompok 2)
 
-| Foto / Inisial | Nama Lengkap | Akun GitHub | Peran & Tanggung Jawab Utama |
+| Inisial | Nama Lengkap | Akun GitHub | Bidang & Tanggung Jawab |
 | :---: | :--- | :--- | :--- |
-| 👑 | **Syahnahl Dilarexa** | [@Syaahnhl](https://github.com/Syaahnhl) | **Project Manager & Lead Architect** (Perencanaan, arsitektur sistem, integrasi modul, deployment) |
-| 🎨 | **Muhammad Dzaky Hamid** | [@ovaltinegif](https://github.com/ovaltinegif) | **UI/UX Designer & Frontend Developer** (Perancangan antarmuka, responsivitas, interaksi komponen) |
-| ⚙️ | **M. Arfian Dwi Pangestu** | [@fichoss](https://github.com/fichoss) | **Backend Developer & Database Engineer** (Arsitektur REST API, manajemen database, integrasi webhook) |
-| 🛡️ | **Kevin Cahyo Ardiansyah** | [@TeaCupCin](https://github.com/TeaCupCin) | **QA Engineer & Technical Writer** (Dokumentasi teknis, pengujian sistem, penjaminan mutu ISO 25010) |
+| 💻 | **Syahnahl Dilarexa** | [@Syaahnhl](https://github.com/Syaahnhl) | Software Architecture & Fullstack Development |
+| 🎨 | **Muhammad Dzaky Hamid** | [@ovaltinegif](https://github.com/ovaltinegif) | UI/UX Design & Frontend Engineering |
+| ⚙️ | **M. Arfian Dwi Pangestu** | [@fichoss](https://github.com/fichoss) | Backend API & Database Engineering |
+| 🛡️ | **Kevin Cahyo Ardiansyah** | [@TeaCupCin](https://github.com/TeaCupCin) | Quality Assurance & System Testing |
+| 📋 | **Rizaldi Ilman** | [@Rizaldi07126](https://github.com/Rizaldi07126) | Technical Documentation & DevOps Support |
 
 ---
 
@@ -49,15 +50,16 @@ Platform ini hadir sebagai solusi terpadu **End-to-End**:
   - Simulasi pembayaran real-time dengan efek selebrasi.
   - Generator **E-Receipt Resmi** lengkap dengan kode verifikasi transaksi QR Code yang dapat langsung dicetak atau diunduh.
 
-### 2. Donasi Logistik Barang & Gudang
-- **Pengajuan Donasi Barang Fisik:** Formulir donasi terstruktur untuk sembako, pakaian layak pakai, perlengkapan sekolah, dan kebutuhan medis.
-- **Opsi Penyerahan:** Pilihan antar mandiri ke Gudang Cabang (Bawen/Ungaran) atau layanan jemput donasi oleh armada relawan yayasan.
-- **Auto Resi Generator:** Menghasilkan kode resi logistik unik (contoh: `AWP-LOG-8821`, `AWP-BRG-2026-9812`).
+### 2. Modul Donasi Logistik Barang (In-Kind Donation)
+- Pengajuan donasi logistik (Pangan/Sembako, Pakaian Layak, Buku/Peralatan Belajar, Medis).
+- Input estimasi bobot paket (Kg) dan deskripsi kondisi barang.
+- Fleksibilitas metode drop-off: *Antar Mandiri ke Gudang Cabang (Bawen/Ungaran)* atau *Layanan Jemput Donasi Relawan*.
+- Pembuatan kode resi barang otomatis (contoh: `AWP-BRG-2026-9812`).
 
-### 3. Mesin Pelacakan Bantuan (Live Public Tracking)
-- Cek status bantuan langsung melalui input nomor resi.
-- Visual timeline 4 tahap terverifikasi:
-  1. *Donasi Diterima & Diverifikasi di Gudang*
+### 3. Mesin Pelacakan Bantuan Sosial (Live Aid Tracking)
+- Pelacakan terbuka bagi publik dan donatur menggunakan kode resi unik.
+- Visualisasi riwayat tahapan penyaluran (4 Milestone):
+  1. *Donasi Diterima & Terverifikasi di Gudang Induk*
   2. *Sortir & Pengecekan Kualitas Mutu Logistik*
   3. *Pengemasan & Dalam Perjalanan Armada Relawan*
   4. *Telah Diserahkan kepada Penerima Manfaat* (disertai foto dokumentasi & nama penerima)

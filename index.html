@@ -42,56 +42,99 @@
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-sky-500 selection:text-white min-h-screen flex flex-col justify-between">
 
   <!-- ==================== NAVIGATION BAR ==================== -->
-  <header class="sticky top-0 z-40 glass-nav transition-all">
+  <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-slate-200/80 shadow-xs transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
+      <div class="flex items-center justify-between h-16 sm:h-18">
         
-        <!-- Logo -->
-        <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('section-home')">
-          <div class="w-11 h-11 rounded-2xl bg-gradient-brand flex items-center justify-center text-white shadow-md shadow-sky-500/20">
-            <i data-lucide="cloud-heart" class="w-6 h-6"></i>
+        <!-- Brand Logo -->
+        <div class="flex items-center gap-2.5 sm:gap-3 cursor-pointer group" onclick="navigateTo('section-home')">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-brand flex items-center justify-center text-white shadow-md shadow-sky-500/25 group-hover:scale-105 transition-transform">
+            <i data-lucide="cloud-heart" class="w-5 h-5 sm:w-5.5 sm:h-5.5"></i>
           </div>
           <div>
-            <span class="text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-1.5">
-              Awan Putih <span class="text-sky-600 font-semibold text-xs px-2 py-0.5 rounded-full bg-sky-50 border border-sky-100">Yayasan</span>
-            </span>
-            <p class="text-[11px] text-slate-500 font-medium">Sistem Donasi & Logistik Terpadu</p>
+            <div class="flex items-center gap-1.5">
+              <span class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">Awan Putih</span>
+              <span class="text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-full bg-sky-50 text-sky-700 border border-sky-200/60">Yayasan</span>
+            </div>
+            <p class="text-[10px] sm:text-[11px] text-slate-500 font-medium hidden sm:block">Sistem Donasi & Logistik Terpadu</p>
           </div>
         </div>
 
         <!-- Desktop Navigation Links -->
-        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
-          <button onclick="navigateTo('section-home')" data-target="section-home" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold text-sky-600 hover:text-sky-700 transition-colors">
+        <nav class="hidden md:flex items-center gap-1 lg:gap-1.5 p-1 bg-slate-100/80 rounded-2xl border border-slate-200/50">
+          <button onclick="navigateTo('section-home')" data-target="section-home" class="nav-link px-3.5 py-1.5 rounded-xl text-xs lg:text-sm font-semibold text-sky-600 bg-white shadow-xs transition-all">
             Beranda
           </button>
-          <button onclick="navigateTo('section-campaigns')" data-target="section-campaigns" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+          <button onclick="navigateTo('section-campaigns')" data-target="section-campaigns" class="nav-link px-3.5 py-1.5 rounded-xl text-xs lg:text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all">
             Program Donasi
           </button>
-          <button onclick="navigateTo('section-in-kind')" data-target="section-in-kind" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1">
+          <button onclick="navigateTo('section-in-kind')" data-target="section-in-kind" class="nav-link px-3.5 py-1.5 rounded-xl text-xs lg:text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all flex items-center gap-1.5">
             <span>Donasi Barang</span>
-            <span class="text-[10px] bg-emerald-100 text-emerald-700 px-1.5 py-0.2 rounded-full font-bold">Logistik</span>
+            <span class="text-[9px] bg-emerald-100 text-emerald-700 px-1.5 py-0.2 rounded-full font-bold">Logistik</span>
           </button>
-          <button onclick="navigateTo('section-tracking')" data-target="section-tracking" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1">
+          <button onclick="navigateTo('section-tracking')" data-target="section-tracking" class="nav-link px-3.5 py-1.5 rounded-xl text-xs lg:text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all flex items-center gap-1.5">
             <i data-lucide="map-pin" class="w-3.5 h-3.5 text-sky-600"></i>
             <span>Lacak Bantuan</span>
           </button>
-          <button onclick="navigateTo('section-transparency')" data-target="section-transparency" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+          <button onclick="navigateTo('section-transparency')" data-target="section-transparency" class="nav-link px-3.5 py-1.5 rounded-xl text-xs lg:text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all">
             Transparansi
           </button>
         </nav>
 
-        <!-- Right CTA & Admin Switcher -->
-        <div class="flex items-center gap-3">
-          <button onclick="navigateTo('section-admin')" data-target="section-admin" class="hidden sm:flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all">
+        <!-- Right Action Controls -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Backoffice Button -->
+          <button onclick="navigateTo('section-admin')" data-target="section-admin" class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-slate-100/90 hover:bg-slate-200/80 border border-slate-200/80 rounded-xl transition-all">
             <i data-lucide="shield-check" class="w-3.5 h-3.5 text-slate-500"></i>
             <span>Dasbor Pengelola</span>
           </button>
-          <button onclick="openDonationModal()" class="px-5 py-2.5 rounded-xl bg-gradient-brand text-white font-semibold text-sm shadow-md shadow-sky-600/25 hover:shadow-lg hover:shadow-sky-600/35 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+
+          <!-- Primary CTA Button -->
+          <button onclick="openDonationModal()" class="px-3.5 sm:px-4.5 py-2 rounded-xl bg-gradient-brand text-white font-semibold text-xs sm:text-sm shadow-md shadow-sky-600/25 hover:shadow-lg hover:shadow-sky-600/35 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-1.5 sm:gap-2">
             <i data-lucide="heart-handshake" class="w-4 h-4 text-sky-200"></i>
             <span>Donasi Sekarang</span>
           </button>
+
+          <!-- Mobile Hamburger Toggle Button -->
+          <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none transition-colors" aria-label="Menu Navigasi">
+            <i data-lucide="menu" id="menu-icon-bars" class="w-6 h-6"></i>
+            <i data-lucide="x" id="menu-icon-cross" class="w-6 h-6 hidden"></i>
+          </button>
         </div>
 
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Navigation Drawer -->
+    <div id="mobile-nav-drawer" class="hidden md:hidden border-t border-slate-200/70 bg-white/95 backdrop-blur-md px-4 pt-3 pb-5 space-y-1.5 shadow-xl transition-all animate-fadeIn">
+      <button onclick="navigateTo('section-home'); toggleMobileMenu(true);" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-semibold text-sky-600 hover:bg-sky-50 flex items-center gap-2.5 transition-colors">
+        <i data-lucide="home" class="w-4 h-4"></i>
+        <span>Beranda</span>
+      </button>
+      <button onclick="navigateTo('section-campaigns'); toggleMobileMenu(true);" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2.5 transition-colors">
+        <i data-lucide="layers" class="w-4 h-4 text-slate-400"></i>
+        <span>Program Donasi Finansial</span>
+      </button>
+      <button onclick="navigateTo('section-in-kind'); toggleMobileMenu(true);" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 flex items-center justify-between transition-colors">
+        <div class="flex items-center gap-2.5">
+          <i data-lucide="package" class="w-4 h-4 text-emerald-600"></i>
+          <span>Donasi Barang & Logistik</span>
+        </div>
+        <span class="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-bold">Logistik</span>
+      </button>
+      <button onclick="navigateTo('section-tracking'); toggleMobileMenu(true);" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2.5 transition-colors">
+        <i data-lucide="map-pin" class="w-4 h-4 text-sky-600"></i>
+        <span>Lacak Bantuan (Cek Resi)</span>
+      </button>
+      <button onclick="navigateTo('section-transparency'); toggleMobileMenu(true);" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2.5 transition-colors">
+        <i data-lucide="pie-chart" class="w-4 h-4 text-slate-400"></i>
+        <span>Laporan Transparansi Publik</span>
+      </button>
+      <div class="pt-2 border-t border-slate-100 mt-2">
+        <button onclick="navigateTo('section-admin'); toggleMobileMenu(true);" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-700 hover:bg-slate-100 flex items-center gap-2 bg-slate-50 border border-slate-200/60 transition-colors">
+          <i data-lucide="shield-check" class="w-4 h-4 text-sky-600"></i>
+          <span>Masuk Dasbor Pengelola Yayasan</span>
+        </button>
       </div>
     </div>
   </header>
@@ -708,10 +751,11 @@
         <div class="lg:col-span-4 space-y-3">
           <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Tim Pengembang (Kelompok 2 PPL)</h4>
           <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs space-y-1.5 text-slate-300">
-            <p><strong>Ketua Tim:</strong> Syahnahl Dilarexa (@Syaahnhl)</p>
-            <p><strong>Anggota Tim:</strong> Abdul Hamid (@ovaltinegif)</p>
-            <p><strong>Anggota Tim:</strong> M. Arfian Dwi Pangestu (@fichoss)</p>
-            <p><strong>Anggota Tim:</strong> Kevin Cahyo Ardiansyah (@TeaCupCin)</p>
+            <div class="flex items-center justify-between"><span>Syahnahl Dilarexa</span><a href="https://github.com/Syaahnhl" target="_blank" class="text-sky-400 hover:underline">@Syaahnhl</a></div>
+            <div class="flex items-center justify-between"><span>Abdul Hamid</span><a href="https://github.com/ovaltinegif" target="_blank" class="text-sky-400 hover:underline">@ovaltinegif</a></div>
+            <div class="flex items-center justify-between"><span>M. Arfian Dwi Pangestu</span><a href="https://github.com/fichoss" target="_blank" class="text-sky-400 hover:underline">@fichoss</a></div>
+            <div class="flex items-center justify-between"><span>Kevin Cahyo Ardiansyah</span><a href="https://github.com/TeaCupCin" target="_blank" class="text-sky-400 hover:underline">@TeaCupCin</a></div>
+            <div class="flex items-center justify-between"><span>Rizaldi Ilman</span><a href="https://github.com/Rizaldi07126" target="_blank" class="text-sky-400 hover:underline">@Rizaldi07126</a></div>
           </div>
           <p class="text-[11px] text-slate-500">Proyek Rekayasa Perangkat Lunak S1 Sistem Informasi UDINUS 2026.</p>
         </div>

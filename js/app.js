@@ -184,20 +184,39 @@ function navigateTo(sectionId) {
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Update active state in nav
+  // Update active state in desktop navbar
   document.querySelectorAll('.nav-link').forEach(link => {
     if (link.getAttribute('data-target') === sectionId) {
-      link.classList.add('text-sky-600', 'font-semibold');
-      link.classList.remove('text-slate-600');
+      link.classList.add('text-sky-600', 'bg-white', 'shadow-xs', 'font-semibold');
+      link.classList.remove('text-slate-600', 'hover:bg-white/60');
     } else {
-      link.classList.remove('text-sky-600', 'font-semibold');
-      link.classList.add('text-slate-600');
+      link.classList.remove('text-sky-600', 'bg-white', 'shadow-xs', 'font-semibold');
+      link.classList.add('text-slate-600', 'hover:bg-white/60');
     }
   });
 
   // Render chart if navigating to transparency
   if (sectionId === 'section-transparency') {
     setTimeout(initTransparencyChart, 100);
+  }
+}
+
+// Mobile Hamburger Menu Toggle
+function toggleMobileMenu(forceClose = false) {
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const iconBars = document.getElementById('menu-icon-bars');
+  const iconCross = document.getElementById('menu-icon-cross');
+  if (!drawer) return;
+
+  if (forceClose || !drawer.classList.contains('hidden')) {
+    drawer.classList.add('hidden');
+    if (iconBars) iconBars.classList.remove('hidden');
+    if (iconCross) iconCross.classList.add('hidden');
+  } else {
+    drawer.classList.remove('hidden');
+    if (iconBars) iconBars.classList.add('hidden');
+    if (iconCross) iconCross.classList.remove('hidden');
+    if (window.lucide) lucide.createIcons();
   }
 }
 
