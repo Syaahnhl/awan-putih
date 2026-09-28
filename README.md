@@ -15,7 +15,7 @@
 | Foto / Inisial | Nama Lengkap | Akun GitHub | Peran & Tanggung Jawab Utama |
 | :---: | :--- | :--- | :--- |
 | 👑 | **Syahnahl Dilarexa** | [@Syaahnhl](https://github.com/Syaahnhl) | **Project Manager & Lead Architect** (Perencanaan, arsitektur sistem, integrasi modul, deployment) |
-| 🎨 | **Abdul Hamid** | [@ovaltinegif](https://github.com/ovaltinegif) | **UI/UX Designer & Frontend Developer** (Perancangan antarmuka, responsivitas, interaksi komponen) |
+| 🎨 | **Muhammad Dzaky Hamid** | [@ovaltinegif](https://github.com/ovaltinegif) | **UI/UX Designer & Frontend Developer** (Perancangan antarmuka, responsivitas, interaksi komponen) |
 | ⚙️ | **M. Arfian Dwi Pangestu** | [@fichoss](https://github.com/fichoss) | **Backend Developer & Database Engineer** (Arsitektur REST API, manajemen database, integrasi webhook) |
 | 🛡️ | **Kevin Cahyo Ardiansyah** | [@TeaCupCin](https://github.com/TeaCupCin) | **QA Engineer & Technical Writer** (Dokumentasi teknis, pengujian sistem, penjaminan mutu ISO 25010) |
 
