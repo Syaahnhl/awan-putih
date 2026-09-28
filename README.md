@@ -14,11 +14,11 @@
 
 | Inisial | Nama Lengkap | Akun GitHub | Bidang & Tanggung Jawab |
 | :---: | :--- | :--- | :--- |
-| 💻 | **Syahnahl Dilarexa** | [@Syaahnhl](https://github.com/Syaahnhl) | Software Architecture & Fullstack Development |
-| 🎨 | **Muhammad Dzaky Hamid** | [@ovaltinegif](https://github.com/ovaltinegif) | UI/UX Design & Frontend Engineering |
-| ⚙️ | **M. Arfian Dwi Pangestu** | [@fichoss](https://github.com/fichoss) | Backend API & Database Engineering |
-| 🛡️ | **Kevin Cahyo Ardiansyah** | [@TeaCupCin](https://github.com/TeaCupCin) | Quality Assurance & System Testing |
-| 📋 | **Rizaldi Ilman** | [@Rizaldi07126](https://github.com/Rizaldi07126) | Technical Documentation & DevOps Support |
+| 💻 | **Syahnahl Dilarexa** | [@Syaahnhl](https://github.com/Syaahnhl) | - |
+| 🎨 | **Muhammad Dzaky Hamid** | [@ovaltinegif](https://github.com/ovaltinegif) | - |
+| ⚙️ | **M. Arfian Dwi Pangestu** | [@fichoss](https://github.com/fichoss) | - |
+| 🛡️ | **Kevin Cahyo Ardiansyah** | [@TeaCupCin](https://github.com/TeaCupCin) | - |
+| 📋 | **Rizaldi Ilman** | - | - |
 
 ---
 

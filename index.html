@@ -52,10 +52,7 @@
             <i data-lucide="cloud-heart" class="w-5 h-5 sm:w-5.5 sm:h-5.5"></i>
           </div>
           <div>
-            <div class="flex items-center gap-1.5">
-              <span class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">Awan Putih</span>
-              <span class="text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-full bg-sky-50 text-sky-700 border border-sky-200/60">Yayasan</span>
-            </div>
+            <span class="text-base sm:text-lg font-black text-slate-900 tracking-tight leading-tight block">Awan Putih</span>
             <p class="text-[10px] sm:text-[11px] text-slate-500 font-medium hidden sm:block">Sistem Donasi & Logistik Terpadu</p>
           </div>
         </div>
@@ -90,9 +87,10 @@
           </button>
 
           <!-- Primary CTA Button -->
-          <button onclick="openDonationModal()" class="px-3.5 sm:px-4.5 py-2 rounded-xl bg-gradient-brand text-white font-semibold text-xs sm:text-sm shadow-md shadow-sky-600/25 hover:shadow-lg hover:shadow-sky-600/35 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-1.5 sm:gap-2">
-            <i data-lucide="heart-handshake" class="w-4 h-4 text-sky-200"></i>
-            <span>Donasi Sekarang</span>
+          <button onclick="openDonationModal()" class="px-3 sm:px-4.5 py-1.5 sm:py-2 rounded-xl bg-gradient-brand text-white font-semibold text-xs sm:text-sm shadow-sm shadow-sky-600/20 hover:shadow-md hover:shadow-sky-600/30 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-1.5">
+            <i data-lucide="heart-handshake" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-200"></i>
+            <span class="hidden sm:inline">Donasi Sekarang</span>
+            <span class="sm:hidden">Donasi</span>
           </button>
 
           <!-- Mobile Hamburger Toggle Button -->
@@ -181,22 +179,22 @@
               </div>
 
               <!-- Quick Value Badges -->
-              <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-200/60">
-                <div>
-                  <p class="text-2xl font-black text-slate-900" id="stat-total-dana">Rp 284.500.000</p>
-                  <p class="text-xs text-slate-500 font-medium">Dana Terhimpun</p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 pt-6 border-t border-slate-200/60">
+                <div class="min-w-0 p-3 sm:p-0 rounded-2xl bg-white/80 sm:bg-transparent border border-slate-100 sm:border-0 shadow-xs sm:shadow-none">
+                  <p class="text-base sm:text-xl lg:text-2xl font-black text-slate-900 tracking-tight leading-tight truncate" title="Rp 284.500.000" id="stat-total-dana">Rp 284.500.000</p>
+                  <p class="text-[11px] sm:text-xs text-slate-500 font-medium truncate mt-0.5">Dana Terhimpun</p>
                 </div>
-                <div>
-                  <p class="text-2xl font-black text-emerald-600" id="stat-total-barang">1.420 Paket</p>
-                  <p class="text-xs text-slate-500 font-medium">Bantuan Logistik</p>
+                <div class="min-w-0 p-3 sm:p-0 rounded-2xl bg-white/80 sm:bg-transparent border border-slate-100 sm:border-0 shadow-xs sm:shadow-none">
+                  <p class="text-base sm:text-xl lg:text-2xl font-black text-emerald-600 tracking-tight leading-tight truncate" id="stat-total-barang">1.420 Paket</p>
+                  <p class="text-[11px] sm:text-xs text-slate-500 font-medium truncate mt-0.5">Bantuan Logistik</p>
                 </div>
-                <div>
-                  <p class="text-2xl font-black text-sky-600" id="stat-total-donatur">3.850 Orang</p>
-                  <p class="text-xs text-slate-500 font-medium">Donatur Terlibat</p>
+                <div class="min-w-0 p-3 sm:p-0 rounded-2xl bg-white/80 sm:bg-transparent border border-slate-100 sm:border-0 shadow-xs sm:shadow-none">
+                  <p class="text-base sm:text-xl lg:text-2xl font-black text-sky-600 tracking-tight leading-tight truncate" id="stat-total-donatur">3.850 Orang</p>
+                  <p class="text-[11px] sm:text-xs text-slate-500 font-medium truncate mt-0.5">Donatur Terlibat</p>
                 </div>
-                <div>
-                  <p class="text-2xl font-black text-amber-600">100% WTP</p>
-                  <p class="text-xs text-slate-500 font-medium">Transparansi Audit</p>
+                <div class="min-w-0 p-3 sm:p-0 rounded-2xl bg-white/80 sm:bg-transparent border border-slate-100 sm:border-0 shadow-xs sm:shadow-none">
+                  <p class="text-base sm:text-xl lg:text-2xl font-black text-amber-600 tracking-tight leading-tight truncate">100% WTP</p>
+                  <p class="text-[11px] sm:text-xs text-slate-500 font-medium truncate mt-0.5">Transparansi Audit</p>
                 </div>
               </div>
 
@@ -750,12 +748,12 @@
         <!-- Team & GitHub Information -->
         <div class="lg:col-span-4 space-y-3">
           <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Tim Pengembang (Kelompok 2 PPL)</h4>
-          <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs space-y-1.5 text-slate-300">
+          <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs space-y-2 text-slate-300">
             <div class="flex items-center justify-between"><span>Syahnahl Dilarexa</span><a href="https://github.com/Syaahnhl" target="_blank" class="text-sky-400 hover:underline">@Syaahnhl</a></div>
-            <div class="flex items-center justify-between"><span>Abdul Hamid</span><a href="https://github.com/ovaltinegif" target="_blank" class="text-sky-400 hover:underline">@ovaltinegif</a></div>
+            <div class="flex items-center justify-between"><span>Muhammad Dzaky Hamid</span><a href="https://github.com/ovaltinegif" target="_blank" class="text-sky-400 hover:underline">@ovaltinegif</a></div>
             <div class="flex items-center justify-between"><span>M. Arfian Dwi Pangestu</span><a href="https://github.com/fichoss" target="_blank" class="text-sky-400 hover:underline">@fichoss</a></div>
             <div class="flex items-center justify-between"><span>Kevin Cahyo Ardiansyah</span><a href="https://github.com/TeaCupCin" target="_blank" class="text-sky-400 hover:underline">@TeaCupCin</a></div>
-            <div class="flex items-center justify-between"><span>Rizaldi Ilman</span><a href="https://github.com/Rizaldi07126" target="_blank" class="text-sky-400 hover:underline">@Rizaldi07126</a></div>
+            <div class="flex items-center justify-between"><span>Rizaldi Ilman</span><span class="text-slate-500">-</span></div>
           </div>
           <p class="text-[11px] text-slate-500">Proyek Rekayasa Perangkat Lunak S1 Sistem Informasi UDINUS 2026.</p>
         </div>
