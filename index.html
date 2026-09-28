@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awan Putih Foundation — Platform Informasi & Manajemen Donasi Terpadu</title>
+  
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Chart.js for Transparency Analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Canvas Confetti for Celebration -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-sky-500 selection:text-white min-h-screen flex flex-col justify-between">
+
+  <!-- ==================== NAVIGATION BAR ==================== -->
+  <header class="sticky top-0 z-40 glass-nav transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('section-home')">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-brand flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+            <i data-lucide="cloud-heart" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-1.5">
+              Awan Putih <span class="text-sky-600 font-semibold text-xs px-2 py-0.5 rounded-full bg-sky-50 border border-sky-100">Yayasan</span>
+            </span>
+            <p class="text-[11px] text-slate-500 font-medium">Sistem Donasi & Logistik Terpadu</p>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+          <button onclick="navigateTo('section-home')" data-target="section-home" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold text-sky-600 hover:text-sky-700 transition-colors">
+            Beranda
+          </button>
+          <button onclick="navigateTo('section-campaigns')" data-target="section-campaigns" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+            Program Donasi
+          </button>
+          <button onclick="navigateTo('section-in-kind')" data-target="section-in-kind" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1">
+            <span>Donasi Barang</span>
+            <span class="text-[10px] bg-emerald-100 text-emerald-700 px-1.5 py-0.2 rounded-full font-bold">Logistik</span>
+          </button>
+          <button onclick="navigateTo('section-tracking')" data-target="section-tracking" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-sky-600"></i>
+            <span>Lacak Bantuan</span>
+          </button>
+          <button onclick="navigateTo('section-transparency')" data-target="section-transparency" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+            Transparansi
+          </button>
+        </nav>
+
+        <!-- Right CTA & Admin Switcher -->
+        <div class="flex items-center gap-3">
+          <button onclick="navigateTo('section-admin')" data-target="section-admin" class="hidden sm:flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-slate-500"></i>
+            <span>Dasbor Pengelola</span>
+          </button>
+          <button onclick="openDonationModal()" class="px-5 py-2.5 rounded-xl bg-gradient-brand text-white font-semibold text-sm shadow-md shadow-sky-600/25 hover:shadow-lg hover:shadow-sky-600/35 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+            <i data-lucide="heart-handshake" class="w-4 h-4 text-sky-200"></i>
+            <span>Donasi Sekarang</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT SECTIONS ==================== -->
+  <main class="flex-grow">
+
+    <!-- 1. SECTION: HOME / BERANDA -->
+    <section id="section-home" class="transition-opacity duration-300">
+      
+      <!-- Hero Banner -->
+      <div class="relative overflow-hidden bg-gradient-hero py-16 lg:py-24 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-7 space-y-6">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-100/80 border border-sky-200 text-sky-800 text-xs font-semibold">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-sky-600"></i>
+                <span>Platform Terpadu Donasi Finansial & Logistik Barang</span>
+              </div>
+              
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Mengubah Setiap Kebaikan Menjadi <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-teal-500">Senyuman yang Nyata.</span>
+              </h1>
+              
+              <p class="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-2xl">
+                Awan Putih Foundation menghubungkan dermawan dengan penerima manfaat di Jawa Tengah melalui sistem otomasi verifikasi donasi dana dan <strong>live tracking</strong> distribusi logistik sembako hingga ke tangan warga.
+              </p>
+
+              <!-- CTA Group -->
+              <div class="flex flex-wrap items-center gap-4 pt-2">
+                <button onclick="openDonationModal()" class="px-6 py-3.5 rounded-2xl bg-gradient-brand text-white font-bold text-sm shadow-lg shadow-sky-600/30 hover:shadow-xl hover:shadow-sky-600/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                  <i data-lucide="heart" class="w-4 h-4 fill-white"></i>
+                  <span>Donasi Dana Cepat</span>
+                </button>
+                <button onclick="navigateTo('section-in-kind')" class="px-6 py-3.5 rounded-2xl bg-white text-slate-800 font-bold text-sm border border-slate-200 hover:bg-slate-50 shadow-soft hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                  <i data-lucide="package" class="w-4 h-4 text-emerald-600"></i>
+                  <span>Kirim Bantuan Barang</span>
+                </button>
+                <button onclick="navigateTo('section-tracking')" class="px-4 py-3.5 rounded-2xl text-slate-600 hover:text-sky-600 font-semibold text-xs flex items-center gap-1.5 transition-colors">
+                  <i data-lucide="search" class="w-4 h-4"></i>
+                  <span>Cek Resi Donasi</span>
+                </button>
+              </div>
+
+              <!-- Quick Value Badges -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-200/60">
+                <div>
+                  <p class="text-2xl font-black text-slate-900" id="stat-total-dana">Rp 284.500.000</p>
+                  <p class="text-xs text-slate-500 font-medium">Dana Terhimpun</p>
+                </div>
+                <div>
+                  <p class="text-2xl font-black text-emerald-600" id="stat-total-barang">1.420 Paket</p>
+                  <p class="text-xs text-slate-500 font-medium">Bantuan Logistik</p>
+                </div>
+                <div>
+                  <p class="text-2xl font-black text-sky-600" id="stat-total-donatur">3.850 Orang</p>
+                  <p class="text-xs text-slate-500 font-medium">Donatur Terlibat</p>
+                </div>
+                <div>
+                  <p class="text-2xl font-black text-amber-600">100% WTP</p>
+                  <p class="text-xs text-slate-500 font-medium">Transparansi Audit</p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Hero Interactive Card / Tracking Teaser -->
+            <div class="lg:col-span-5">
+              <div class="bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white shadow-xl shadow-slate-200/50 space-y-6">
+                
+                <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-sky-100 flex items-center justify-center text-sky-700">
+                      <i data-lucide="radar" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-800 text-sm">Pelacakan Donasi Real-Time</h4>
+                      <p class="text-xs text-slate-400">Pantau perjalanan paket bantuan Anda</p>
+                    </div>
+                  </div>
+                  <span class="flex h-2.5 w-2.5 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                  </span>
+                </div>
+
+                <!-- Fast Tracking Input Form -->
+                <div class="space-y-3">
+                  <label class="block text-xs font-semibold text-slate-700">Masukkan Token / Nomor Resi Donasi:</label>
+                  <div class="flex gap-2">
+                    <input type="text" id="home-tracking-input" placeholder="Contoh: AWP-LOG-8821" value="AWP-LOG-8821" class="flex-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono font-medium focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                    <button onclick="document.getElementById('tracking-input').value = document.getElementById('home-tracking-input').value; navigateTo('section-tracking'); executeTrackingSearch();" class="px-4 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-semibold transition-all">
+                      Lacak
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Mini Timeline Preview -->
+                <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 space-y-3">
+                  <div class="flex items-center justify-between text-xs">
+                    <span class="font-mono text-sky-700 font-bold">Resi: AWP-LOG-8821</span>
+                    <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-semibold text-[10px]">Dalam Pengiriman</span>
+                  </div>
+                  <div class="flex items-center gap-2 pt-2">
+                    <div class="w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold">✓</div>
+                    <div class="h-0.5 flex-1 bg-emerald-500"></div>
+                    <div class="w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold">✓</div>
+                    <div class="h-0.5 flex-1 bg-emerald-500"></div>
+                    <div class="w-7 h-7 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-bold">3</div>
+                    <div class="h-0.5 flex-1 bg-slate-200"></div>
+                    <div class="w-7 h-7 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center text-xs font-bold">4</div>
+                  </div>
+                  <p class="text-[11px] text-slate-500 italic pt-1 text-center">
+                    Mobil Rescue Awan Putih sedang menuju titik posko pengungsian.
+                  </p>
+                </div>
+
+                <div class="pt-2 text-center">
+                  <button onclick="navigateTo('section-in-kind')" class="text-xs text-sky-600 font-semibold hover:underline">
+                    Punya barang layak pakai atau sembako? Salurkan di sini &rarr;
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Highlight Programs Section -->
+      <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+          <div>
+            <span class="text-xs font-bold tracking-wider uppercase text-sky-600">Pilihan Donasi Mendesak</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Program Bantuan Kemanusiaan</h2>
+          </div>
+          <button onclick="navigateTo('section-campaigns')" class="mt-4 md:mt-0 text-sm font-semibold text-sky-600 hover:text-sky-700 flex items-center gap-1">
+            <span>Lihat Semua Program</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div id="home-campaigns-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Feature Pillars -->
+      <div class="bg-white py-16 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-xs font-bold tracking-wider uppercase text-sky-600">Keunggulan Sistem Terpadu</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Standar Baru Transparansi Donasi</h2>
+            <p class="text-sm text-slate-500 mt-2">Menghilangkan keraguan donatur dengan teknologi pemantauan end-to-end.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center">
+                <i data-lucide="zap" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 text-lg">Otomasi Verifikasi Instan</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Pembayaran donasi finansial diverifikasi secara otomatis melalui webhook perbankan dan e-wallet dalam hitungan detik dengan penerbitan E-Receipt ber-QR code resmi.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
+                <i data-lucide="boxes" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 text-lg">Manajemen Logistik & Sortir</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Setiap barang fisik (sembako, pakaian, buku) dicatat ke dalam modul gudang terintegrasi, disortir berdasarkan kualitas kelayakan, dan dikemas rapi sebelum dikirim.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center">
+                <i data-lucide="file-check-2" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 text-lg">Akuntabilitas & Audit Publik</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Laporan keuangan dan rekapitulasi penyaluran bantuan disajikan secara terbuka melalui dasbor analitik real-time yang dapat diakses oleh publik dan para donatur.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 2. SECTION: PROGRAM DONASI / CAMPAIGNS -->
+    <section id="section-campaigns" class="hidden transition-opacity duration-300 py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Katalog Program Donasi</h2>
+          <p class="text-sm text-slate-500 mt-2">Pilih kampanye sosial yang ingin Anda bantu hari ini. Seluruh donasi disalurkan 100% amanah.</p>
+        </div>
+
+        <!-- Filter Categories -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
+          <button onclick="renderCampaigns('Semua')" class="px-4 py-2 rounded-xl text-xs font-semibold bg-sky-600 text-white shadow-sm">Semua Program</button>
+          <button onclick="renderCampaigns('Bencana')" class="px-4 py-2 rounded-xl text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">Tanggap Bencana</button>
+          <button onclick="renderCampaigns('Pendidikan')" class="px-4 py-2 rounded-xl text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">Pendidikan & Yatim</button>
+          <button onclick="renderCampaigns('Kesehatan')" class="px-4 py-2 rounded-xl text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">Kesehatan Lansia</button>
+          <button onclick="renderCampaigns('Infrastruktur')" class="px-4 py-2 rounded-xl text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">Infrastruktur Sosial</button>
+        </div>
+
+        <div id="campaigns-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. SECTION: DONASI LOGISTIK BARANG -->
+    <section id="section-in-kind" class="hidden transition-opacity duration-300 py-12">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-10">
+          <span class="text-xs font-bold tracking-wider uppercase text-emerald-600">In-Kind Donation Portal</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Formulir Pengajuan Donasi Barang</h2>
+          <p class="text-sm text-slate-500 mt-2">Bantu sesama dengan donasi barang fisik yang bermanfaat. Paket Anda akan disortir dan dilacak secara transparan.</p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-soft">
+          <form id="inkind-form" class="space-y-6">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nama Lengkap Donatur *</label>
+                <input type="text" id="inkind-name" required placeholder="Contoh: Muhammad Dzaky" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nomor WhatsApp Aktif *</label>
+                <input type="tel" id="inkind-phone" required placeholder="08xxxxxxxxxx" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Kategori Barang Bantuan *</label>
+                <select id="inkind-category" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none font-medium">
+                  <option value="Sembako & Pangan Tahan Lama">Sembako & Pangan Tahan Lama (Beras, Minyak, Mie)</option>
+                  <option value="Pakaian Layak Pakai">Pakaian Bersih & Layak Pakai (Dewasa / Anak)</option>
+                  <option value="Perlengkapan Belajar & Buku">Perlengkapan Belajar & Buku Tulis Sekolah</option>
+                  <option value="Perlengkapan Medis & Popok Lansia">Perlengkapan Medis & Popok Dewasa/Bayi</option>
+                  <option value="Selimut & Kasur Lipat Darurat">Selimut & Kasur Lipat Tanggap Darurat</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Estimasi Jumlah / Berat *</label>
+                <input type="text" id="inkind-quantity" required placeholder="Contoh: 2 Kardus (Sekitar 15 Kg)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
+              </div>
+            </div>
+
+            <!-- Delivery Method -->
+            <div class="space-y-3">
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Metode Penyerahan Barang *</label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <label class="flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-sky-500 cursor-pointer bg-slate-50/50">
+                  <input type="radio" name="delivery-method" value="Drop-off Gudang Utama (Ungaran)" checked class="mt-1 text-sky-600 focus:ring-sky-500">
+                  <div>
+                    <span class="text-xs font-bold text-slate-800">Antar Sendiri ke Drop Point Gudang</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Gudang Logistik Yayasan Awan Putih, Ungaran Barat, Kab. Semarang</p>
+                  </div>
+                </label>
+                <label class="flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-sky-500 cursor-pointer bg-slate-50/50">
+                  <input type="radio" name="delivery-method" value="Layanan Jemput Relawan" class="mt-1 text-sky-600 focus:ring-sky-500">
+                  <div>
+                    <span class="text-xs font-bold text-slate-800">Layanan Jemput Donasi Relawan</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Relawan kami akan menghubungi WhatsApp Anda untuk koordinasi armada</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Notes -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Catatan Tambahan / Kondisi Barang</label>
+              <textarea id="inkind-notes" rows="3" placeholder="Informasikan kondisi barang atau instruksi penanganan khusus..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs text-slate-500">Token tracking resi otomatis diterbitkan setelah pengajuan.</span>
+              <button type="submit" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center gap-2">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                <span>Ajukan Donasi Barang</span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. SECTION: LACAK BANTUAN / TRACKING RESI -->
+    <section id="section-tracking" class="hidden transition-opacity duration-300 py-12">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-8">
+          <span class="text-xs font-bold tracking-wider uppercase text-sky-600">Sistem Audit & Pelacakan Publik</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Live Tracking Penyaluran Bantuan</h2>
+          <p class="text-sm text-slate-500 mt-2">Pantau pergerakan donasi Anda dari saat terverifikasi hingga tiba di tangan penerima manfaat.</p>
+        </div>
+
+        <!-- Search Box -->
+        <div class="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200 shadow-soft mb-8">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <div class="relative flex-1">
+              <i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-4 top-3.5"></i>
+              <input type="text" id="tracking-input" placeholder="Masukkan Nomor Resi / Token (Contoh: AWP-LOG-8821)" class="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono focus:ring-2 focus:ring-sky-500 focus:outline-none uppercase">
+            </div>
+            <button onclick="executeTrackingSearch()" class="px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm rounded-xl shadow-sm transition-all flex items-center justify-center gap-2">
+              <i data-lucide="compass" class="w-4 h-4"></i>
+              <span>Lacak Sekarang</span>
+            </button>
+          </div>
+          <div class="flex items-center gap-2 mt-3 text-xs text-slate-500">
+            <span>Coba token demo:</span>
+            <button onclick="document.getElementById('tracking-input').value = 'AWP-LOG-8821'; executeTrackingSearch();" class="text-sky-600 hover:underline font-mono font-semibold">AWP-LOG-8821 (Barang)</button>
+            <span>•</span>
+            <button onclick="document.getElementById('tracking-input').value = 'AWP-FIN-4512'; executeTrackingSearch();" class="text-sky-600 hover:underline font-mono font-semibold">AWP-FIN-4512 (Dana)</button>
+          </div>
+        </div>
+
+        <!-- Result Card -->
+        <div id="tracking-result-card" class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-soft space-y-8">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">No. Token Donasi:</span>
+                <span id="res-token" class="text-base font-black font-mono text-sky-600">AWP-LOG-8821</span>
+              </div>
+              <h3 id="res-category" class="text-xl font-extrabold text-slate-900">Sembako (Beras & Minyak)</h3>
+              <p class="text-xs text-slate-500 mt-0.5">Donatur: <span id="res-donor" class="font-semibold text-slate-700">Budi Santoso</span></p>
+            </div>
+            <div id="res-status-badge">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Metadata Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100 text-xs">
+            <div>
+              <span class="text-slate-400 block mb-0.5">Tipe Donasi</span>
+              <span id="res-type" class="font-bold text-slate-800">Barang Logistik</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block mb-0.5">Volume / Jumlah</span>
+              <span id="res-quantity" class="font-bold text-slate-800">50 Kg Beras</span>
+            </div>
+            <div class="col-span-2">
+              <span class="text-slate-400 block mb-0.5">Tujuan Distribusi</span>
+              <span id="res-dest" class="font-bold text-slate-800">Dapur Umum Pengungsian</span>
+            </div>
+          </div>
+
+          <!-- Vertical Timeline Steps -->
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-6">Tahapan Perjalanan Bantuan</h4>
+            <div id="res-timeline-container" class="space-y-2">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+        </div>
+
+        <div id="tracking-empty-state" class="hidden"></div>
+
+      </div>
+    </section>
+
+    <!-- 5. SECTION: TRANSPARANSI & AKUNTABILITAS PUBLIK -->
+    <section id="section-transparency" class="hidden transition-opacity duration-300 py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="text-xs font-bold tracking-wider uppercase text-sky-600">Publikasi Terbuka</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Laporan Transparansi & Akuntabilitas</h2>
+          <p class="text-sm text-slate-500 mt-2">Awan Putih Foundation menerapkan prinsip tata kelola donasi WTP (Wajar Tanpa Pengecualian) dengan pelaporan real-time.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+          
+          <!-- Chart Column -->
+          <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-soft flex flex-col justify-between">
+            <div>
+              <h3 class="font-extrabold text-slate-900 text-lg mb-1">Alokasi Penyaluran Dana Bantuan</h3>
+              <p class="text-xs text-slate-500 mb-6">Persentase distribusi kas donasi terhimpun per sektor program kemanusiaan.</p>
+              
+              <div class="relative h-64 w-full">
+                <canvas id="transparencyChart"></canvas>
+              </div>
+            </div>
+
+            <div class="pt-6 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="text-slate-500">Efisiensi penyaluran bantuan langsung:</span>
+              <span class="font-bold text-emerald-600">94% tersalurkan langsung</span>
+            </div>
+          </div>
+
+          <!-- Audit Highlights Column -->
+          <div class="lg:col-span-6 space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-soft space-y-4">
+              <h3 class="font-extrabold text-slate-900 text-lg">Dokumen Laporan Pertanggungjawaban</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Setiap bulan, tim manajemen menerbitkan rekapitulasi audit keuangan donasi dan berita acara serah terima logistik barang yang dapat diunduh oleh publik.
+              </p>
+
+              <div class="space-y-3 pt-2">
+                <div class="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-100">
+                  <div class="flex items-center gap-3">
+                    <i data-lucide="file-text" class="w-5 h-5 text-red-500"></i>
+                    <div>
+                      <p class="text-xs font-bold text-slate-800">Laporan Akuntabilitas Semester Gasal 2026</p>
+                      <p class="text-[11px] text-slate-400">PDF • 4.2 MB • Telah Diaudit</p>
+                    </div>
+                  </div>
+                  <button onclick="exportReport('pdf')" class="px-3 py-1.5 bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold rounded-lg shadow-sm">
+                    Unduh
+                  </button>
+                </div>
+
+                <div class="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-100">
+                  <div class="flex items-center gap-3">
+                    <i data-lucide="sheet" class="w-5 h-5 text-emerald-600"></i>
+                    <div>
+                      <p class="text-xs font-bold text-slate-800">Buku Rekap Penyaluran Logistik Sembako</p>
+                      <p class="text-[11px] text-slate-400">Spreadsheet XLSX • 1.8 MB</p>
+                    </div>
+                  </div>
+                  <button onclick="exportReport('xlsx')" class="px-3 py-1.5 bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold rounded-lg shadow-sm">
+                    Unduh
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hotline Audit -->
+            <div class="bg-gradient-brand text-white rounded-3xl p-6 sm:p-8 shadow-lg">
+              <h4 class="font-bold text-base mb-1">Kanal Pengaduan & Informasi Publik</h4>
+              <p class="text-xs text-sky-100 leading-relaxed mb-4">
+                Punya pertanyaan mengenai transparansi donasi Anda atau ingin verifikasi langsung ke posko penyaluran?
+              </p>
+              <div class="flex flex-wrap items-center gap-3 text-xs font-semibold">
+                <span class="px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20">📞 0823-2353-5747</span>
+                <span class="px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20">✉ info@awanputih.org</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. SECTION: DASBOR PENGELOLA / ADMIN -->
+    <section id="section-admin" class="hidden transition-opacity duration-300 py-10 bg-slate-100 min-h-screen">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Admin Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-white font-mono text-[11px] font-bold">PORTAL ADMIN</span>
+              <span class="text-xs text-slate-500">Yayasan Awan Putih • Role: Super Admin</span>
+            </div>
+            <h2 class="text-2xl font-extrabold text-slate-900 mt-1">Sistem Manajemen & Monitoring Operasional</h2>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <button onclick="exportReport('rekap-excel')" class="px-3.5 py-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold rounded-xl shadow-sm flex items-center gap-1.5">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i>
+              <span>Ekspor Rekap Laporan</span>
+            </button>
+            <button onclick="navigateTo('section-home')" class="px-3.5 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl shadow-sm">
+              Kembali ke Web Publik
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric Stat Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="text-xs text-slate-400 font-medium">Kas Donasi Masuk</span>
+            <p class="text-2xl font-black text-slate-900 mt-1">Rp 284.500.000</p>
+            <span class="text-[11px] text-emerald-600 font-semibold mt-2 inline-block">↑ 14.2% bulan ini</span>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="text-xs text-slate-400 font-medium">Paket Logistik Gudang</span>
+            <p class="text-2xl font-black text-slate-900 mt-1">1.420 Paket</p>
+            <span class="text-[11px] text-sky-600 font-semibold mt-2 inline-block">38 paket siap kirim</span>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="text-xs text-slate-400 font-medium">Transaksi Finansial</span>
+            <p class="text-2xl font-black text-slate-900 mt-1">3.850 Trx</p>
+            <span class="text-[11px] text-emerald-600 font-semibold mt-2 inline-block">99.8% otomatis webhook</span>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="text-xs text-slate-400 font-medium">Tingkat Penyaluran</span>
+            <p class="text-2xl font-black text-slate-900 mt-1">94.1%</p>
+            <span class="text-[11px] text-slate-500 font-semibold mt-2 inline-block">Sesuai KPI WTP</span>
+          </div>
+        </div>
+
+        <!-- Section Admin 1: Update Resi Logistik Barang -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm mb-8">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="font-extrabold text-slate-900 text-base">Kelola Status Resi Logistik Gudang</h3>
+              <p class="text-xs text-slate-400">Klik tombol "Update Tahap" untuk memajukan progres pelacakan fisik barang donasi.</p>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  <th class="py-3 px-4">Token Resi</th>
+                  <th class="py-3 px-4">Donatur</th>
+                  <th class="py-3 px-4">Kategori Barang</th>
+                  <th class="py-3 px-4">Jumlah / Volume</th>
+                  <th class="py-3 px-4">Status Terkini</th>
+                  <th class="py-3 px-4">Aksi Operator</th>
+                </tr>
+              </thead>
+              <tbody id="admin-inkind-table">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Section Admin 2: Log Transaksi Masuk -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="font-extrabold text-slate-900 text-base">Riwayat Transaksi Finansial Masuk</h3>
+              <p class="text-xs text-slate-400">Daftar transaksi payment gateway terkini yang telah terverifikasi sistem.</p>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  <th class="py-3 px-4">No. Transaksi</th>
+                  <th class="py-3 px-4">Nama Donatur</th>
+                  <th class="py-3 px-4">Program</th>
+                  <th class="py-3 px-4">Nominal</th>
+                  <th class="py-3 px-4">Kanal Bayar</th>
+                  <th class="py-3 px-4">Status</th>
+                  <th class="py-3 px-4">Waktu</th>
+                </tr>
+              </thead>
+              <tbody id="admin-transactions-table">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-slate-900 text-white pt-16 pb-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+        
+        <!-- Brand Info -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-gradient-brand flex items-center justify-center text-white">
+              <i data-lucide="cloud-heart" class="w-5 h-5"></i>
+            </div>
+            <span class="text-xl font-extrabold tracking-tight">Awan Putih Foundation</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+            Platform Informasi & Manajemen Donasi Terpadu berbasis web. Mewujudkan penghimpunan dana dan distribusi logistik sembako yang transparan, akuntabel, dan berdampak nyata bagi masyarakat.
+          </p>
+          <div class="text-[11px] text-slate-500">
+            Kantor Yayasan: Jl. Ahmad Yani No. 45, Ungaran, Kabupaten Semarang, Jawa Tengah.
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Navigasi Utama</h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li><a href="javascript:void(0)" onclick="navigateTo('section-home')" class="hover:text-white transition-colors">Beranda</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateTo('section-campaigns')" class="hover:text-white transition-colors">Katalog Program Donasi</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateTo('section-in-kind')" class="hover:text-white transition-colors">Donasi Barang & Logistik</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateTo('section-tracking')" class="hover:text-white transition-colors">Lacak Status Bantuan (Cek Resi)</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateTo('section-transparency')" class="hover:text-white transition-colors">Laporan Transparansi WTP</a></li>
+          </ul>
+        </div>
+
+        <!-- Team & GitHub Information -->
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Tim Pengembang (Kelompok 2 PPL)</h4>
+          <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs space-y-1.5 text-slate-300">
+            <p><strong>Ketua Tim:</strong> Syahnahl Dilarexa (@Syaahnhl)</p>
+            <p><strong>Anggota Tim:</strong> Abdul Hamid (@ovaltinegif)</p>
+            <p><strong>Anggota Tim:</strong> M. Arfian Dwi Pangestu (@fichoss)</p>
+            <p><strong>Anggota Tim:</strong> Kevin Cahyo Ardiansyah (@TeaCupCin)</p>
+          </div>
+          <p class="text-[11px] text-slate-500">Proyek Rekayasa Perangkat Lunak S1 Sistem Informasi UDINUS 2026.</p>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>&copy; 2026 Awan Putih Foundation. All rights reserved.</p>
+        <p>Built with ❤️ by Kelompok 2 PPL.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL CHECKOUT DONASI FINANSIAL ==================== -->
+  <div id="donation-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      
+      <!-- Close Button -->
+      <button onclick="closeDonationModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Target Campaign Banner -->
+      <div class="mb-6 pb-4 border-b border-slate-100">
+        <span id="modal-campaign-category" class="text-[11px] font-bold text-sky-600 uppercase tracking-wider">Bencana</span>
+        <h3 id="modal-campaign-title" class="font-extrabold text-slate-900 text-base line-clamp-1">Tanggap Darurat Sembako & Pangan Jawa Tengah</h3>
+      </div>
+
+      <!-- STEP 1: Pilih Nominal & Data Diri -->
+      <div id="modal-step-1" class="modal-step space-y-6">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5">Pilih Nominal Donasi</label>
+          <div class="grid grid-cols-3 gap-2.5 mb-3">
+            <button onclick="selectNominal(25000)" data-amount="25000" class="nominal-btn py-2.5 px-3 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 hover:border-sky-500 transition-all">Rp 25.000</button>
+            <button onclick="selectNominal(50000)" data-amount="50000" class="nominal-btn py-2.5 px-3 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 hover:border-sky-500 transition-all">Rp 50.000</button>
+            <button onclick="selectNominal(100000)" data-amount="100000" class="nominal-btn py-2.5 px-3 rounded-xl border-sky-600 bg-sky-50 text-sky-700 font-bold text-xs hover:border-sky-500 transition-all">Rp 100.000</button>
+            <button onclick="selectNominal(250000)" data-amount="250000" class="nominal-btn py-2.5 px-3 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 hover:border-sky-500 transition-all">Rp 250.000</button>
+            <button onclick="selectNominal(500000)" data-amount="500000" class="nominal-btn py-2.5 px-3 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 hover:border-sky-500 transition-all">Rp 500.000</button>
+            <button onclick="selectNominal(1000000)" data-amount="1000000" class="nominal-btn py-2.5 px-3 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 hover:border-sky-500 transition-all">Rp 1.000.000</button>
+          </div>
+          
+          <input type="text" id="custom-nominal-input" onkeyup="handleCustomNominal(this.value)" placeholder="Atau ketik nominal lainnya (Min. Rp 10.000)" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
+        </div>
+
+        <!-- Data Donatur -->
+        <div class="space-y-3">
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Identitas Donatur</label>
+          <input type="text" id="donor-name-input" placeholder="Nama Lengkap Donatur" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
+          
+          <div class="flex items-center gap-2">
+            <input type="checkbox" id="donor-anon-check" class="rounded text-sky-600 focus:ring-sky-500">
+            <label for="donor-anon-check" class="text-xs text-slate-600 font-medium">Sembunyikan nama saya (Donasi sebagai Hamba Allah)</label>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2.5 pt-1">
+            <input type="tel" id="donor-phone-input" placeholder="No. WhatsApp (opsional)" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
+            <input type="email" id="donor-email-input" placeholder="Alamat Email (opsional)" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
+          </div>
+
+          <textarea id="donor-prayer-input" rows="2" placeholder="Tuliskan doa atau pesan dukungan untuk penerima manfaat..." class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
+        </div>
+
+        <!-- Payment Method Selection -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Metode Pembayaran</label>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div onclick="selectPaymentMethod('QRIS')" data-method="QRIS" class="payment-method-card border-sky-600 bg-sky-50/50 ring-2 ring-sky-500/20 p-3 rounded-xl border cursor-pointer flex items-center justify-between">
+              <span class="font-bold text-slate-800">QRIS Instan</span>
+              <span class="text-[10px] bg-sky-600 text-white font-bold px-1.5 py-0.5 rounded">Otomatis</span>
+            </div>
+            <div onclick="selectPaymentMethod('BCA VA')" data-method="BCA VA" class="payment-method-card border-slate-200 p-3 rounded-xl border cursor-pointer flex items-center justify-between">
+              <span class="font-bold text-slate-800">BCA Virtual Account</span>
+            </div>
+            <div onclick="selectPaymentMethod('Mandiri VA')" data-method="Mandiri VA" class="payment-method-card border-slate-200 p-3 rounded-xl border cursor-pointer flex items-center justify-between">
+              <span class="font-bold text-slate-800">Mandiri VA</span>
+            </div>
+            <div onclick="selectPaymentMethod('GoPay / ShopeePay')" data-method="GoPay / ShopeePay" class="payment-method-card border-slate-200 p-3 rounded-xl border cursor-pointer flex items-center justify-between">
+              <span class="font-bold text-slate-800">E-Wallet (GoPay/OVO)</span>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="proceedToPayment()" class="w-full py-3.5 bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+          <span>Lanjut ke Pembayaran</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- STEP 2: Instruksi Bayar & Simulasi Gateway -->
+      <div id="modal-step-2" class="modal-step hidden space-y-6">
+        <div class="text-center">
+          <span class="text-xs text-slate-400 font-medium">Total Tagihan Donasi</span>
+          <p id="pay-summary-amount" class="text-3xl font-black text-sky-600 my-1">Rp 100.000</p>
+          <span class="inline-flex items-center gap-1 text-[11px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full font-semibold">
+            <i data-lucide="clock" class="w-3 h-3"></i>
+            <span>Batas Waktu Pembayaran: 23:59 WIB</span>
+          </span>
+        </div>
+
+        <!-- Simulated QRIS / VA Code -->
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center space-y-3">
+          <div class="w-44 h-44 bg-white p-3 rounded-xl mx-auto shadow-sm border border-slate-200 flex flex-col items-center justify-center">
+            <!-- Simulated QR Image -->
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=AWAN-PUTIH-DONATION-SIMULATOR" alt="QRIS Code" class="w-36 h-36">
+          </div>
+          <p class="text-xs text-slate-600 font-medium">Pindai kode QRIS menggunakan GoPay, OVO, Dana, BCA Mobile, atau aplikasi m-Banking apa pun.</p>
+        </div>
+
+        <div class="p-4 bg-sky-50 rounded-xl border border-sky-100 text-xs space-y-1 text-slate-700">
+          <div class="flex justify-between">
+            <span class="text-slate-500">Nama Donatur:</span>
+            <span id="pay-summary-donor" class="font-bold">Ahmad Fauzi</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">Metode Bayar:</span>
+            <span id="pay-summary-method" class="font-bold">QRIS</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">Kampanye:</span>
+            <span id="pay-summary-campaign" class="font-bold line-clamp-1">Tanggap Darurat</span>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <button onclick="executePaymentSimulation()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+            <i data-lucide="check-circle" class="w-4 h-4"></i>
+            <span>Simulasikan Pembayaran Berhasil</span>
+          </button>
+          <button onclick="showModalStep(1)" class="w-full py-2.5 text-xs text-slate-500 hover:text-slate-700 font-semibold transition-colors">
+            &larr; Ubah Nominal / Metode
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: E-Receipt Tanda Terima Resmi -->
+      <div id="modal-step-3" class="modal-step hidden space-y-6">
+        
+        <div id="printable-receipt" class="p-6 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-300 space-y-4 text-center">
+          <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+            <i data-lucide="badge-check" class="w-7 h-7"></i>
+          </div>
+          
+          <div>
+            <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Pembayaran Diterima</span>
+            <h4 class="text-xl font-black text-slate-900 mt-0.5">E-RECEIPT RESMI DONASI</h4>
+            <p class="text-[11px] text-slate-400 font-mono" id="receipt-trx-id">AWP-PAY-892102</p>
+          </div>
+
+          <div class="border-t border-b border-slate-200 py-3 text-xs space-y-1.5 text-left">
+            <div class="flex justify-between">
+              <span class="text-slate-500">Waktu Pembayaran:</span>
+              <span id="receipt-date" class="font-semibold text-slate-800">28 Sep 2026, 19:30 WIB</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500">Donatur:</span>
+              <span id="receipt-donor" class="font-semibold text-slate-800">Budi Santoso</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500">Kanal Pembayaran:</span>
+              <span id="receipt-method" class="font-semibold text-slate-800">QRIS</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500">Program Penyaluran:</span>
+              <span id="receipt-campaign" class="font-semibold text-slate-800 line-clamp-1">Tanggap Darurat</span>
+            </div>
+            <div class="flex justify-between pt-1 border-t border-slate-200">
+              <span class="font-bold text-slate-800">Total Donasi:</span>
+              <span id="receipt-amount" class="font-black text-sm text-sky-600">Rp 100.000</span>
+            </div>
+          </div>
+
+          <div class="text-[11px] text-slate-500 italic">
+            "Terima kasih atas kebaikan Anda. Semoga menjadi amal jariyah yang membawa keberkahan melimpah."
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <button onclick="window.print()" class="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl shadow-sm flex items-center justify-center gap-2 transition-all">
+            <i data-lucide="printer" class="w-4 h-4"></i>
+            <span>Cetak / Simpan Bukti PDF</span>
+          </button>
+          <button onclick="closeDonationModal()" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl transition-all">
+            Selesai & Tutup
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Core App Logic Script -->
+  <script src="js/app.js"></script>
+</body>
+</html>
