@@ -18,7 +18,7 @@
 | 🎨 | **Muhammad Dzaky Hamid** | [@ovaltinegif](https://github.com/ovaltinegif) | - |
 | ⚙️ | **M. Arfian Dwi Pangestu** | [@fichoss](https://github.com/fichoss) | - |
 | 🛡️ | **Kevin Cahyo Ardiansyah** | [@TeaCupCin](https://github.com/TeaCupCin) | - |
-| 📋 | **Rizaldi Ilman** | - | - |
+| 📋 | **Rizaldi Ilman** | [@RizaldiMaulana](https://github.com/RizaldiMaulana) | - |
 
 ---
 
