@@ -12,13 +12,13 @@
 
 ## 👥 Tim Pengembang (Kelompok 2)
 
-| Inisial | Nama Lengkap | Akun GitHub | Bidang & Tanggung Jawab |
-| :---: | :--- | :--- | :--- |
-| 💻 | **Syahnahl Dilarexa** | [@Syaahnhl](https://github.com/Syaahnhl) | - |
-| 🎨 | **Muhammad Dzaky Hamid** | [@ovaltinegif](https://github.com/ovaltinegif) | - |
-| ⚙️ | **M. Arfian Dwi Pangestu** | [@fichoss](https://github.com/fichoss) | - |
-| 🛡️ | **Kevin Cahyo Ardiansyah** | [@TeaCupCin](https://github.com/TeaCupCin) | - |
-| 📋 | **Rizaldi Ilman** | [@RizaldiMaulana](https://github.com/RizaldiMaulana) | - |
+| No | Nama Lengkap | NIM | Akun GitHub | Bidang & Tanggung Jawab |
+| :---: | :--- | :---: | :--- | :--- |
+| 1 | **Rizaldi Ilman Maulana** | A12.2023.07126 | [@RizaldiMaulana](https://github.com/RizaldiMaulana) | - |
+| 2 | **Syahnahl Dilarexa** | A12.2023.07003 | [@Syaahnhl](https://github.com/Syaahnhl) | - |
+| 3 | **Arfizan Rabbani** | A12.2023.06991 | - | - |
+| 4 | **Alief Kariel Ramadhan** | A12.2023.07090 | - | - |
+| 5 | **Muhammad Dzaky Hamid** | A12.2023.07109 | [@ovaltinegif](https://github.com/ovaltinegif) | - |
 
 ---
 
