@@ -14,11 +14,11 @@
 
 | No | Nama Lengkap | NIM | Akun GitHub | Bidang & Tanggung Jawab |
 | :---: | :--- | :---: | :--- | :--- |
-| 1 | **Rizaldi Ilman Maulana** | A12.2023.07126 | [@RizaldiMaulana](https://github.com/RizaldiMaulana) | - |
-| 2 | **Syahnahl Dilarexa** | A12.2023.07003 | [@Syaahnhl](https://github.com/Syaahnhl) | - |
-| 3 | **Arfizan Rabbani** | A12.2023.06991 | - | - |
-| 4 | **Alief Kariel Ramadhan** | A12.2023.07090 | - | - |
-| 5 | **Muhammad Dzaky Hamid** | A12.2023.07109 | [@ovaltinegif](https://github.com/ovaltinegif) | - |
+| 1 | **Rizaldi Ilman Maulana** | A12.2023.07126 | [@RizaldiMaulana](https://github.com/RizaldiMaulana) | Perancangan Sistem & UI/UX Design |
+| 2 | **Syahnahl Dilarexa** | A12.2023.07003 | [@Syaahnhl](https://github.com/Syaahnhl) | Fullstack Developer |
+| 3 | **Arfizan Rabbani** | A12.2023.06991 | [@fichoss](https://github.com/fichoss) | Perancangan Sistem & UI/UX Design |
+| 4 | **Alief Kariel Ramadhan** | A12.2023.07090 | [@TeaCupCin](https://github.com/TeaCupCin) | Fullstack Developer |
+| 5 | **Muhammad Dzaky Hamid** | A12.2023.07109 | [@ovaltinegif](https://github.com/ovaltinegif) | Fullstack Developer |
 
 ---
 
